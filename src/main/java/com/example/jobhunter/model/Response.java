@@ -19,11 +19,11 @@ public class Response {
     @Column(name = "cover_letter")
     private String coverLetter;
 
-    @ManyToOne
+    @ManyToOne (optional = false, fetch = FetchType.LAZY)
     @JoinColumn (name = "candidate_id")
     private Candidate candidate;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "vacancy_id")
     private Vacancy vacancy;
 }

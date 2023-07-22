@@ -25,7 +25,7 @@ public class Vacancy {
     @Column(name = "is_active", nullable = false)
     private boolean isActive;
 
-    @ManyToOne
+    @ManyToOne (optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "employer_id")
     private Employer employer;
 }
