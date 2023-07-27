@@ -4,28 +4,32 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
 @Table(name = "candidate")
-public class Candidate {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
+@Accessors(chain = true)
+public class Candidate extends BaseEntity{
 
-    @Column (name = "candidate_name", nullable = false)
+
+    @Column (name = "name", nullable = false)
     private String candidateName;
 
-    @Column(name = "candidate_email", nullable = false, unique = true)
+    @Column(name = "email", nullable = false, unique = true)
     private String candidateEmail;
 
-    @Column(name = "surname", nullable = false)
+    @Column(name = "last_name", nullable = false)
     private String surname;
 
-    @Column(name = "presentation")
-    private String presentation;
+    @OneToOne(mappedBy = "candidate", optional = false, cascade = CascadeType.ALL)
+    private Cv cv;
+
+    public Candidate setCv(Cv cv){
+        this.cv=cv;
+        cv.setCandidate(this);
+        return this;
+    }
 }

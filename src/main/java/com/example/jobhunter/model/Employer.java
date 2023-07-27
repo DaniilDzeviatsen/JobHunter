@@ -5,24 +5,25 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
+
+import java.net.URI;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Table(name = "employer")
-public class Employer {
+@Accessors(chain = true)
+public class Employer extends BaseEntity{
 
-    @Column(name = "employer_name", nullable = false, unique = true)
-    private String employerName;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "name", nullable = false, unique = true)
+    private String name;
 
-    @Column(name = "employer_email", unique = true, nullable = false)
-    private String employerEmail;
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
 
-    @Column(name = "website", unique = true, nullable = false)
-    private String website;
+    @Column(name = "site_url", unique = true, nullable = false)
+    private URI siteUrl;
 
 }

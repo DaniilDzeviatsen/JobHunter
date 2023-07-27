@@ -1,34 +1,44 @@
 CREATE TABLE candidate
 (
-    id             BIGSERIAL PRIMARY KEY,
-    candidate_email          TEXT NOT NULL UNIQUE,
-    candidate_name TEXT NOT NULL,
-    surname        TEXT NOT NULL,
-    presentation   TEXT
+    id        BIGSERIAL PRIMARY KEY,
+    email     TEXT NOT NULL UNIQUE,
+    name      TEXT NOT NULL,
+    last_name TEXT NOT NULL
+);
+CREATE UNIQUE INDEX ON candidate (lower(email));
+
+CREATE TABLE cv
+(
+    candidate_id BIGINT PRIMARY KEY REFERENCES candidate,
+    content      TEXT NOT NULL
 );
 
 CREATE TABLE employer
 (
-    id            BIGSERIAL PRIMARY KEY,
-    employer_email         TEXT NOT NULL UNIQUE,
-    employer_name TEXT NOT NULL,
-    website       TEXT NOT NULL UNIQUE
+    id       BIGSERIAL PRIMARY KEY,
+    email    TEXT NOT NULL UNIQUE,
+    name     TEXT NOT NULL,
+    site_url TEXT
 
 );
+CREATE UNIQUE INDEX ON employer (lower(email));
 
-CREATE TABLE vacancy
+CREATE TABLE opportunity
+(
+    id          BIGSERIAL PRIMARY KEY,
+    title       TEXT      NOT NULL,
+    description TEXT      NOT NULL,
+    active      BOOLEAN   NOT NULL,
+    employer_id BIGINT    NOT NULL REFERENCES employer (id),
+    created_at  TIMESTAMP NOT NULL
+);
+
+CREATE TABLE opportunity_apply
 (
     id           BIGSERIAL PRIMARY KEY,
-    vacancy_name TEXT    NOT NULL,
-    description  TEXT    NOT NULL,
-    is_active    BOOLEAN NOT NULL,
-    employer_id BIGINT REFERENCES employer (id) ON DELETE CASCADE
+    opportunity_id BIGINT NOT NULL REFERENCES opportunity,
+    covering_letter TEXT NOT NULL ,
+    candidate_id BIGSERIAL NOT NULL REFERENCES candidate (id),
+    created_at TIMESTAMP NOT NULL,
+    UNIQUE (opportunity_id, candidate_id)
 );
-
-CREATE TABLE response
-(
-    id            BIGSERIAL PRIMARY KEY,
-    cover_letter TEXT,
-    candidate_id  BIGSERIAL NOT NULL REFERENCES candidate (id) ON DELETE CASCADE,
-    employer_id   BIGSERIAL NOT NULL REFERENCES employer (id) ON DELETE CASCADE
-)
