@@ -1,9 +1,10 @@
 package com.example.jobhunter.repository;
 
-import com.example.jobhunter.model.Opportunity;
+import com.example.jobhunter.model.opportunity.Opportunity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class OpportunityRepositoryImpl extends BaseRepositoryImpl<Opportunity, Long>
@@ -41,5 +42,19 @@ public class OpportunityRepositoryImpl extends BaseRepositoryImpl<Opportunity, L
                 .setMaxResults(pageSize)
                 .setFirstResult(pageSize * pageNumber)
                 .getResultList();
+    }
+
+
+    @Override
+    public Optional<Opportunity> findByIdWithEmployer(long opportunityId) {
+        return entityManager.createQuery("""
+                        SELECT opportunity
+                        FROM Opportunity opportunity
+                        JOIN FETCH opportunity.employer
+                        WHERE opportunity.id=:opportunityId
+                        """, Opportunity.class)
+                .setParameter("opportunityId", opportunityId)
+                .getResultStream()
+                .findFirst();
     }
 }

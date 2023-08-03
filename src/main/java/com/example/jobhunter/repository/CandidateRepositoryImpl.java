@@ -1,7 +1,7 @@
 package com.example.jobhunter.repository;
 
 
-import com.example.jobhunter.model.Candidate;
+import com.example.jobhunter.model.candidate.Candidate;
 import org.springframework.stereotype.Repository;
 
 @Repository

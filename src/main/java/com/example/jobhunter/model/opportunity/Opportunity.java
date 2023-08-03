@@ -1,9 +1,10 @@
-package com.example.jobhunter.model;
+package com.example.jobhunter.model.opportunity;
 
 
+import com.example.jobhunter.model.BaseEntity;
+import com.example.jobhunter.model.employer.Employer;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 

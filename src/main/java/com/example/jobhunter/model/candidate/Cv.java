@@ -1,5 +1,6 @@
-package com.example.jobhunter.model;
+package com.example.jobhunter.model.candidate;
 
+import com.example.jobhunter.model.candidate.Candidate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

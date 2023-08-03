@@ -1,6 +1,6 @@
 package com.example.jobhunter.repository;
 
-import com.example.jobhunter.model.Employer;
+import com.example.jobhunter.model.employer.Employer;
 import org.springframework.stereotype.Repository;
 
 

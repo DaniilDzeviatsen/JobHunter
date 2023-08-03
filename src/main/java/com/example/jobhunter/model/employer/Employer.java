@@ -1,6 +1,7 @@
-package com.example.jobhunter.model;
+package com.example.jobhunter.model.employer;
 
 
+import com.example.jobhunter.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,7 @@ import java.net.URI;
 @Entity
 @Table(name = "employer")
 @Accessors(chain = true)
-public class Employer extends BaseEntity{
+public class Employer extends BaseEntity {
 
     @Column(name = "name", nullable = false, unique = true)
     private String name;

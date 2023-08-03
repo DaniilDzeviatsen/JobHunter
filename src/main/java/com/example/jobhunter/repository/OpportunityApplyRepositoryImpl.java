@@ -1,10 +1,9 @@
 package com.example.jobhunter.repository;
 
-import com.example.jobhunter.model.OpportunityApply;
+import com.example.jobhunter.model.apply.OpportunityApply;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class OpportunityApplyRepositoryImpl extends BaseRepositoryImpl<OpportunityApply, Long>

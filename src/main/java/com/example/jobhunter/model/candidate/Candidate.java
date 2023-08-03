@@ -1,8 +1,8 @@
-package com.example.jobhunter.model;
+package com.example.jobhunter.model.candidate;
 
+import com.example.jobhunter.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
@@ -12,17 +12,17 @@ import lombok.experimental.Accessors;
 @Setter
 @Table(name = "candidate")
 @Accessors(chain = true)
-public class Candidate extends BaseEntity{
+public class Candidate extends BaseEntity {
 
 
     @Column (name = "name", nullable = false)
-    private String candidateName;
+    private String firstName;
 
     @Column(name = "email", nullable = false, unique = true)
-    private String candidateEmail;
+    private String email;
 
     @Column(name = "last_name", nullable = false)
-    private String surname;
+    private String lastName;
 
     @OneToOne(mappedBy = "candidate", optional = false, cascade = CascadeType.ALL)
     private Cv cv;
