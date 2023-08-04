@@ -4,6 +4,7 @@ import com.example.jobhunter.model.apply.OpportunityApply;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class OpportunityApplyRepositoryImpl extends BaseRepositoryImpl<OpportunityApply, Long>
@@ -44,5 +45,19 @@ public class OpportunityApplyRepositoryImpl extends BaseRepositoryImpl<Opportuni
                 .setMaxResults(pageSize)
                 .setFirstResult(pageSize * pageNumber)
                 .getResultList();
+    }
+
+    @Override
+    public Optional<OpportunityApply> findByOpportunityAndCandidate(long opportunityId, long candidateId) {
+        return entityManager.createQuery("""
+                        SELECT apply
+                        FROM OpportunityApply apply
+                        WHERE apply.opportunity.id =:opportunityId
+                        AND apply.candidate.id =:candidateId
+                        """, OpportunityApply.class)
+                .setParameter("opportunityId", opportunityId)
+                .setParameter("candidateId", candidateId)
+                .getResultStream()
+                .findFirst();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.jobhunter.repository;
 
+import com.example.jobhunter.model.apply.OpportunityApply;
 import com.example.jobhunter.model.opportunity.Opportunity;
 import org.springframework.stereotype.Repository;
 
@@ -57,4 +58,5 @@ public class OpportunityRepositoryImpl extends BaseRepositoryImpl<Opportunity, L
                 .getResultStream()
                 .findFirst();
     }
-}
+
+    }

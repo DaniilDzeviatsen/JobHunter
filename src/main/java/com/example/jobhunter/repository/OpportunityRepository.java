@@ -1,5 +1,6 @@
 package com.example.jobhunter.repository;
 
+import com.example.jobhunter.model.apply.OpportunityApply;
 import com.example.jobhunter.model.opportunity.Opportunity;
 
 import java.util.List;
