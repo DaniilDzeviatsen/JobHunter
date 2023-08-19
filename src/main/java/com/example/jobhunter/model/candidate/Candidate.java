@@ -27,6 +27,9 @@ public class Candidate extends BaseEntity {
     @OneToOne(mappedBy = "candidate", optional = false, cascade = CascadeType.ALL)
     private Cv cv;
 
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
     public Candidate setCv(Cv cv){
         this.cv=cv;
         cv.setCandidate(this);

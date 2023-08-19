@@ -27,4 +27,7 @@ public class Employer extends BaseEntity {
     @Column(name = "site_url", unique = true, nullable = false)
     private URI siteUrl;
 
+    @Column(name = "password_hash", nullable = false)
+    private String passwordHash;
+
 }

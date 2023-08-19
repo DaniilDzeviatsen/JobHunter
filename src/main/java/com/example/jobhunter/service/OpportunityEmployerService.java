@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface OpportunityEmployerService {
 
-    List<OpportunityOwnDto> getPageOfOwn(EmployerPrincipal principal, int pageNumber);
+    List<OpportunityOwnDto> getPageOfOwn(int pageNumber, EmployerPrincipal principal);
 
     OpportunityOwnDto getOwnById(long id, EmployerPrincipal principal);
 

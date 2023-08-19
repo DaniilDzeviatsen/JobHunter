@@ -34,7 +34,7 @@ public class OpportunityEmployerServiceImpl implements OpportunityEmployerServic
 
     @Override
     @Transactional(readOnly = true)
-    public List<OpportunityOwnDto> getPageOfOwn(EmployerPrincipal principal, int pageNumber) {
+    public List<OpportunityOwnDto> getPageOfOwn(int pageNumber, EmployerPrincipal principal) {
         return opportunityRepo.findPageByEmployer(principal.getId(), OPPORTUNITIES_PAGE_SIZE, pageNumber)
                 .stream()
                 .map(OpportunityOwnDto::from)

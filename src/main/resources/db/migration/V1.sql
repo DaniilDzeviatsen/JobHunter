@@ -3,7 +3,7 @@ CREATE TABLE candidate
     id        BIGSERIAL PRIMARY KEY,
     email     TEXT NOT NULL UNIQUE,
     password_hash TEXT NOT NULL,
-    first_name      TEXT NOT NULL,
+    name      TEXT NOT NULL,
     last_name TEXT NOT NULL
 );
 CREATE UNIQUE INDEX ON candidate (lower(email));
